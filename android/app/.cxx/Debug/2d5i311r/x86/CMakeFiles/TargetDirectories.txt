@@ -1,0 +1,2 @@
+C:/Flutterinz/fitappv2/fitappv2/android/app/.cxx/Debug/2d5i311r/x86/CMakeFiles/edit_cache.dir
+C:/Flutterinz/fitappv2/fitappv2/android/app/.cxx/Debug/2d5i311r/x86/CMakeFiles/rebuild_cache.dir
