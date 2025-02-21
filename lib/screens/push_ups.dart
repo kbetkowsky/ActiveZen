@@ -1,16 +1,15 @@
-import 'package:fitappv2/screens/push_ups.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'dart:math' as math;
 
 import 'package:lottie/lottie.dart';
 
-class JumpingJacksScreen extends StatefulWidget {
+class PushUpsScreen extends StatefulWidget {
   @override
-  _JumpingJacksScreenState createState() => _JumpingJacksScreenState();
+  _PushUpsScreenState createState() => _PushUpsScreenState();
 }
 
-class _JumpingJacksScreenState extends State<JumpingJacksScreen> {
+class _PushUpsScreenState extends State<PushUpsScreen> {
   late Timer _timer;
   int _start = 20;
 
@@ -22,10 +21,10 @@ class _JumpingJacksScreenState extends State<JumpingJacksScreen> {
         if (_start == 0) {
           setState(() {
             timer.cancel();
-            // Przejście do następnego ekranu ćwiczeń
+            // Navigate to the next exercise screen
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => PushUpsScreen()),
+              MaterialPageRoute(builder: (context) => NextExerciseScreen()),
             );
           });
         } else {
@@ -53,19 +52,19 @@ class _JumpingJacksScreenState extends State<JumpingJacksScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Pajacyki'),
+        title: Text('Push Ups'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(24.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-            const Text("Zaczynamy!",
+            const Text("Let's Start!",
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24)),
             Row(
               children: [
                 Expanded(
-                  child: Lottie.asset("images/jumpingjacks.json"),
+                  child: Lottie.asset("images/push_ups.json"),
                 ),
                 Expanded(
                   child: SizedBox(
@@ -86,21 +85,30 @@ class _JumpingJacksScreenState extends State<JumpingJacksScreen> {
                 ),
               ],
             ),
-
             SizedBox(height: 30),
             Text(
-              'Pajacyki to prosty, ale skuteczny sposób na pobudzenie całego ciała. '
-              'To dynamiczne ćwiczenie angażuje mięśnie nóg, ramion oraz brzucha, '
-              'poprawiając krążenie i zwiększając tlenowanie organizmu. '
-              'Jest idealne na początek dnia, aby szybko rozbudzić się i przygotować ciało do wyzwań dnia. '
-              'Dodatkowo, regularne wykonywanie pajacyków może poprawić Twoją kondycję, wytrzymałość '
-              'oraz wspomóc spalanie kalorii.',
+              'Push Ups are a great exercise to strengthen your upper body. '
+              'They work your chest, shoulders, triceps, and core muscles. '
+              'Regular push ups can help improve your overall fitness and endurance.',
               style: TextStyle(fontSize: 16),
             ),
-            // Dodatkowe elementy UI
           ],
         ),
       ),
+    );
+  }
+}
+
+class NextExerciseScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Next Exercise'),
+      ),
+      body: Center(
+          // Content for the next exercise screen
+          ),
     );
   }
 }
@@ -129,20 +137,5 @@ class TimerPainter extends CustomPainter {
   @override
   bool shouldRepaint(CustomPainter oldDelegate) {
     return true;
-  }
-}
-
-class NextExerciseScreen extends StatelessWidget {
-  // Implementacja kolejnego ekranu z ćwiczeniem
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Następne Ćwiczenie'),
-      ),
-      body: Center(
-          // Zawartość następnego ekranu z ćwiczeniami
-          ),
-    );
   }
 }
