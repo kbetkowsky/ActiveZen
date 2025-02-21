@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "236562288830",
+    "project_id": "fitappv2",
+    "storage_bucket": "fitappv2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:236562288830:android:c0df68b0caded1128b0eef",
+        "android_client_info": {
+          "package_name": "com.example.fitappv2"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCpzE11aE7kicqoqW1uXzbi_fxzYjj29uo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
