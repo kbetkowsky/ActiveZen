@@ -12,7 +12,7 @@ class JumpingJacksScreen extends StatefulWidget {
 
 class _JumpingJacksScreenState extends State<JumpingJacksScreen> {
   late Timer _timer;
-  int _start = 20;
+  int _start = 3;
 
   void startTimer() {
     const oneSec = Duration(seconds: 1);
@@ -71,7 +71,7 @@ class _JumpingJacksScreenState extends State<JumpingJacksScreen> {
                   child: SizedBox(
                     height: 200,
                     child: CustomPaint(
-                      painter: TimerPainter(progress: _start / 120),
+                      painter: TimerPainter(progress: _start / 3),
                       child: Center(
                         child: Text(
                           '$_start',

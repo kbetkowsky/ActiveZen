@@ -1,3 +1,4 @@
+import 'package:fitappv2/screens/jumping_jacks.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'dart:math' as math;
@@ -11,7 +12,7 @@ class PushUpsScreen extends StatefulWidget {
 
 class _PushUpsScreenState extends State<PushUpsScreen> {
   late Timer _timer;
-  int _start = 20;
+  int _start = 3;
 
   void startTimer() {
     const oneSec = Duration(seconds: 1);
@@ -24,7 +25,7 @@ class _PushUpsScreenState extends State<PushUpsScreen> {
             // Navigate to the next exercise screen
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => NextExerciseScreen()),
+              MaterialPageRoute(builder: (context) => JumpingJacksScreen()),
             );
           });
         } else {
@@ -70,7 +71,7 @@ class _PushUpsScreenState extends State<PushUpsScreen> {
                   child: SizedBox(
                     height: 200,
                     child: CustomPaint(
-                      painter: TimerPainter(progress: _start / 120),
+                      painter: TimerPainter(progress: _start / 3),
                       child: Center(
                         child: Text(
                           '$_start',
