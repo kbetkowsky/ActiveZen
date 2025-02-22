@@ -4,9 +4,11 @@ import 'package:fitappv2/func/sleep_tracker.dart';
 import 'package:fitappv2/func/user_photos_widget.dart';
 import 'package:fitappv2/screens/add_post_page.dart';
 import 'package:fitappv2/screens/calorie_input.dart';
+import 'package:fitappv2/screens/exercise_history.dart';
 import 'package:fitappv2/screens/morning_routine.dart';
 import 'package:fitappv2/screens/user_profile_page.dart';
 import 'package:fitappv2/screens/view_post_screen.dart';
+import 'package:fitappv2/screens/weight_history.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:lottie/lottie.dart';
@@ -163,6 +165,13 @@ class AppDrawer extends StatelessWidget {
               Icons.local_fire_department, 'Ćwiczenia do spalenia kalorii', () {
             _navigateTo(context, CalorieInputScreen());
           }),
+          _drawerItem(
+            Icons.history,
+            'Historia ćwiczeń',
+            () {
+              _navigateTo(context, ExerciseHistoryScreen());
+            },
+          ),
         ],
       ),
     );

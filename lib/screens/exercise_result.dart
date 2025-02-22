@@ -1,4 +1,3 @@
-import 'package:fitappv2/screens/exercise_timer_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'exercise_timer_screen.dart';
@@ -45,6 +44,7 @@ class _ExerciseResultScreenState extends State<ExerciseResultScreen> {
         'name': exercise['name'],
         'minutes': minutes,
         'calories': caloriesBurned,
+        'caloriesPerMinute': cpm,
       });
       totalCalories += caloriesBurned;
     }
@@ -59,14 +59,14 @@ class _ExerciseResultScreenState extends State<ExerciseResultScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Ćwiczenia'),
+        title: Text('Exercise Plan'),
       ),
       body: Column(
         children: [
           Padding(
             padding: EdgeInsets.all(16.0),
             child: Text(
-              'Suma spalonych kalorii: $totalCaloriesBurned kcal',
+              'Total Calories to be Burned: $totalCaloriesBurned kcal',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
           ),
@@ -89,6 +89,7 @@ class _ExerciseResultScreenState extends State<ExerciseResultScreen> {
                             builder: (context) => ExerciseTimerScreen(
                               exerciseName: exercise['name'],
                               minutes: exercise['minutes'],
+                              caloriesPerMinute: exercise['caloriesPerMinute'],
                             ),
                           ),
                         );
