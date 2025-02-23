@@ -6,6 +6,8 @@ import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class UserProfilePage extends StatefulWidget {
+  const UserProfilePage({super.key});
+
   @override
   _UserProfilePageState createState() => _UserProfilePageState();
 }
@@ -69,19 +71,19 @@ class _UserProfilePageState extends State<UserProfilePage> {
     });
 
     ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Profil zaktualizowany pomyślnie')));
+        const SnackBar(content: Text('Profil zaktualizowany pomyślnie')));
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('User Profile Page'),
+        title: const Text('User Profile Page'),
       ),
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             if (_downloadURL != null)
               Image.network(
                 _downloadURL!,
@@ -90,16 +92,16 @@ class _UserProfilePageState extends State<UserProfilePage> {
                 fit: BoxFit.cover,
               ),
             Text('Obecna nazwa użytkownika: ${_usernameController.text}'),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             TextField(
               controller: _usernameController,
-              decoration:
-                  InputDecoration(labelText: 'Wpisz swoją nazwę użytkownika:'),
+              decoration: const InputDecoration(
+                  labelText: 'Wpisz swoją nazwę użytkownika:'),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             OutlinedButton(
               onPressed: getImage,
-              child: Text('Wybierz swoje zdjęcie profilowe'),
+              child: const Text('Wybierz swoje zdjęcie profilowe'),
             ),
             _image != null
                 ? ClipRRect(
@@ -111,10 +113,10 @@ class _UserProfilePageState extends State<UserProfilePage> {
                       fit: BoxFit.cover,
                     ),
                   )
-                : Text('No image selected.'),
+                : const Text('No image selected.'),
             ElevatedButton(
               onPressed: () => uploadPic(context),
-              child: Text('Zapisz'),
+              child: const Text('Zapisz'),
             ),
           ],
         ),

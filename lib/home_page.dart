@@ -13,21 +13,25 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:lottie/lottie.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Active Zen',
       theme: ThemeData(primarySwatch: Colors.blue),
-      home: MainScreen(),
+      home: const MainScreen(),
     );
   }
 }
 
 class MainScreen extends StatefulWidget {
+  const MainScreen({super.key});
+
   @override
   _MainScreenState createState() => _MainScreenState();
 }
@@ -37,7 +41,7 @@ class _MainScreenState extends State<MainScreen> {
 
   final List<Widget> _pages = [
     HomePageWidget(),
-    UserProfilePage(),
+    const UserProfilePage(),
   ];
 
   void _onItemTapped(int index) {
@@ -49,7 +53,7 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: AppDrawer(),
+      drawer: const AppDrawer(),
       body: _pages[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
         items: const [
@@ -80,13 +84,15 @@ class HomePageWidget extends StatelessWidget {
     ),
   );
 
+  HomePageWidget({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: gradientDecoration,
       child: Scaffold(
-        appBar: AppBar(title: Text('Active Zen'), elevation: 0),
-        drawer: AppDrawer(),
+        appBar: AppBar(title: const Text('Active Zen'), elevation: 0),
+        drawer: const AppDrawer(),
         body: SingleChildScrollView(
           padding: const EdgeInsets.all(12.0),
           child: Column(
@@ -120,7 +126,7 @@ class HomePageWidget extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10.0),
       child: Text(text,
-          style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
+          style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
     );
   }
 
@@ -133,13 +139,15 @@ class HomePageWidget extends StatelessWidget {
 }
 
 class AppDrawer extends StatelessWidget {
+  const AppDrawer({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
       child: ListView(
         padding: EdgeInsets.zero,
         children: [
-          DrawerHeader(
+          const DrawerHeader(
             decoration: BoxDecoration(color: Colors.blue),
             child: Text(
               'Menu Aktywności',
@@ -147,29 +155,32 @@ class AppDrawer extends StatelessWidget {
             ),
           ),
           _drawerItem(Icons.fitness_center, 'Poranny rozruch', () {
-            _navigateTo(context, MorningRoutineScreen());
+            _navigateTo(context, const MorningRoutineScreen());
           }),
           _drawerItem(Icons.balance, 'Kalkulator BMI', () {
-            _navigateTo(context, BmiCalculatorScreen());
+            _navigateTo(context, const BmiCalculatorScreen());
           }),
           _drawerItem(Icons.assessment, 'Cele wagowe', () {
-            _navigateTo(context, WeightTargetsPage());
+            _navigateTo(context, const WeightTargetsPage());
+          }),
+          _drawerItem(Icons.single_bed_sharp, 'Zdrowy sen', () {
+            _navigateTo(context, SleepTrackerWidget());
           }),
           _drawerItem(Icons.add, 'Dodaj Post', () {
-            _navigateTo(context, AddPostPage());
+            _navigateTo(context, const AddPostPage());
           }),
           _drawerItem(Icons.data_array, 'Wyświetl posty', () {
-            _navigateTo(context, ViewPostsPage());
+            _navigateTo(context, const ViewPostsPage());
           }),
           _drawerItem(
               Icons.local_fire_department, 'Ćwiczenia do spalenia kalorii', () {
-            _navigateTo(context, CalorieInputScreen());
+            _navigateTo(context, const CalorieInputScreen());
           }),
           _drawerItem(
             Icons.history,
             'Historia ćwiczeń',
             () {
-              _navigateTo(context, ExerciseHistoryScreen());
+              _navigateTo(context, const ExerciseHistoryScreen());
             },
           ),
         ],

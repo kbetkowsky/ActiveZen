@@ -5,7 +5,7 @@ import 'exercise_timer_screen.dart';
 class ExerciseResultScreen extends StatefulWidget {
   final int targetCalories;
 
-  ExerciseResultScreen({required this.targetCalories});
+  const ExerciseResultScreen({super.key, required this.targetCalories});
 
   @override
   _ExerciseResultScreenState createState() => _ExerciseResultScreenState();
@@ -59,15 +59,15 @@ class _ExerciseResultScreenState extends State<ExerciseResultScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Exercise Plan'),
+        title: const Text('Exercise Plan'),
       ),
       body: Column(
         children: [
           Padding(
-            padding: EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(16.0),
             child: Text(
               'Total Calories to be Burned: $totalCaloriesBurned kcal',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
           ),
           Expanded(
@@ -76,7 +76,8 @@ class _ExerciseResultScreenState extends State<ExerciseResultScreen> {
               itemBuilder: (context, index) {
                 var exercise = exercisePlan[index];
                 return Card(
-                  margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                  margin:
+                      const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                   child: ListTile(
                     title: Text(exercise['name']),
                     subtitle: Text(
@@ -94,7 +95,7 @@ class _ExerciseResultScreenState extends State<ExerciseResultScreen> {
                           ),
                         );
                       },
-                      child: Text('Start Timer'),
+                      child: const Text('Start Timer'),
                     ),
                   ),
                 );

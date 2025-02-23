@@ -5,7 +5,7 @@ import 'package:lottie/lottie.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+  const LoginScreen({super.key});
 
   @override
   _LoginScreenState createState() => _LoginScreenState();
@@ -77,7 +77,7 @@ class _LoginScreenState extends State<LoginScreen> {
       print('Logowanie zakończone sukcesem');
       // Sukces, przenieś użytkownika do HomeScreen
       Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => MainScreen()));
+          context, MaterialPageRoute(builder: (context) => const MainScreen()));
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         print('Błąd logowania: Nie znaleziono użytkownika');

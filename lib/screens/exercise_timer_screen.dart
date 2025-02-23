@@ -9,11 +9,11 @@ class ExerciseTimerScreen extends StatefulWidget {
   final double caloriesPerMinute; // from your exercise document
 
   const ExerciseTimerScreen({
-    Key? key,
+    super.key,
     required this.exerciseName,
     required this.minutes,
     required this.caloriesPerMinute,
-  }) : super(key: key);
+  });
 
   @override
   _ExerciseTimerScreenState createState() => _ExerciseTimerScreenState();
@@ -36,7 +36,7 @@ class _ExerciseTimerScreenState extends State<ExerciseTimerScreen> {
     setState(() {
       isRunning = true;
     });
-    _timer = Timer.periodic(Duration(seconds: 1), (timer) {
+    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       if (_secondsRemaining > 0) {
         setState(() {
           _secondsRemaining--;
@@ -91,7 +91,7 @@ class _ExerciseTimerScreenState extends State<ExerciseTimerScreen> {
     });
 
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('Exercise saved to history!')),
+      const SnackBar(content: Text('Exercise saved to history!')),
     );
   }
 
@@ -111,23 +111,23 @@ class _ExerciseTimerScreenState extends State<ExerciseTimerScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(timerText, style: TextStyle(fontSize: 48)),
-            SizedBox(height: 20),
+            Text(timerText, style: const TextStyle(fontSize: 48)),
+            const SizedBox(height: 20),
             ElevatedButton(
               onPressed: isRunning ? _stopTimer : _startTimer,
               child: Text(isRunning ? 'Pause Timer' : 'Start Timer'),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             ElevatedButton(
               onPressed: _resetTimer,
-              child: Text('Reset Timer'),
+              child: const Text('Reset Timer'),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             // Show the "Finished Exercise" button when timer is complete or at any time if desired.
             if (finished || !isRunning)
               ElevatedButton(
                 onPressed: _saveExerciseHistory,
-                child: Text('Finished Exercise'),
+                child: const Text('Finished Exercise'),
               ),
           ],
         ),

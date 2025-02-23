@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:fitappv2/home_page.dart';
 import 'package:fitappv2/screens/login_screen.dart';
 import 'package:fitappv2/screens/register_screen.dart';
 import 'package:flutter/material.dart';
@@ -64,9 +63,9 @@ class _MyAppState extends State<MyApp> {
                   MaterialPageRoute(builder: (context) => const LoginScreen()),
                 );
               },
-              child: Text('Zaloguj się'),
+              child: const Text('Zaloguj się'),
             ),
-            SizedBox(height: 10), // Odstęp między przyciskami
+            const SizedBox(height: 10), // Odstęp między przyciskami
             ElevatedButton(
               onPressed: () {
                 Navigator.push(
@@ -75,7 +74,7 @@ class _MyAppState extends State<MyApp> {
                       builder: (context) => const RegisterScreen()),
                 );
               },
-              child: Text('Zarejestruj się'),
+              child: const Text('Zarejestruj się'),
             ),
             // ElevatedButton(
             //   onPressed: () {

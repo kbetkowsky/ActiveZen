@@ -3,12 +3,14 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class ExerciseHistoryScreen extends StatelessWidget {
+  const ExerciseHistoryScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     String uid = FirebaseAuth.instance.currentUser?.uid ?? '';
 
     return Scaffold(
-      appBar: AppBar(title: Text('Exercise History')),
+      appBar: AppBar(title: const Text('Exercise History')),
       body: StreamBuilder<QuerySnapshot>(
         stream: FirebaseFirestore.instance
             .collection('exerciseHistory')
@@ -16,10 +18,10 @@ class ExerciseHistoryScreen extends StatelessWidget {
             .snapshots(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           }
           if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-            return Center(child: Text('No history available.'));
+            return const Center(child: Text('No history available.'));
           }
 
           // Accumulate total minutes and calories
@@ -49,11 +51,11 @@ class ExerciseHistoryScreen extends StatelessWidget {
             children: [
               // Display the totals at the top
               Padding(
-                padding: EdgeInsets.all(16.0),
+                padding: const EdgeInsets.all(16.0),
                 child: Text(
                   'Total Minutes: $totalMinutes\n'
                   'Total Calories: $totalCalories',
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
                   ),

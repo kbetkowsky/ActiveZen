@@ -6,6 +6,8 @@ import 'dart:math' as math;
 import 'package:lottie/lottie.dart';
 
 class PushUpsScreen extends StatefulWidget {
+  const PushUpsScreen({super.key});
+
   @override
   _PushUpsScreenState createState() => _PushUpsScreenState();
 }
@@ -25,7 +27,8 @@ class _PushUpsScreenState extends State<PushUpsScreen> {
             // Navigate to the next exercise screen
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => JumpingJacksScreen()),
+              MaterialPageRoute(
+                  builder: (context) => const JumpingJacksScreen()),
             );
           });
         } else {
@@ -53,7 +56,7 @@ class _PushUpsScreenState extends State<PushUpsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Push Ups'),
+        title: const Text('Push Ups'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(24.0),
@@ -75,7 +78,7 @@ class _PushUpsScreenState extends State<PushUpsScreen> {
                       child: Center(
                         child: Text(
                           '$_start',
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 32,
                             fontWeight: FontWeight.bold,
                           ),
@@ -86,8 +89,8 @@ class _PushUpsScreenState extends State<PushUpsScreen> {
                 ),
               ],
             ),
-            SizedBox(height: 30),
-            Text(
+            const SizedBox(height: 30),
+            const Text(
               'Push Ups are a great exercise to strengthen your upper body. '
               'They work your chest, shoulders, triceps, and core muscles. '
               'Regular push ups can help improve your overall fitness and endurance.',
@@ -101,13 +104,15 @@ class _PushUpsScreenState extends State<PushUpsScreen> {
 }
 
 class NextExerciseScreen extends StatelessWidget {
+  const NextExerciseScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Next Exercise'),
+        title: const Text('Next Exercise'),
       ),
-      body: Center(
+      body: const Center(
           // Content for the next exercise screen
           ),
     );

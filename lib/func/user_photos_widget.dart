@@ -6,6 +6,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'dart:io';
 
 class UserPhotosWidget extends StatefulWidget {
+  const UserPhotosWidget({super.key});
+
   @override
   _UserPhotosWidgetState createState() => _UserPhotosWidgetState();
 }
@@ -66,7 +68,7 @@ class _UserPhotosWidgetState extends State<UserPhotosWidget> {
   Widget build(BuildContext context) {
     return GridView.builder(
       gridDelegate:
-          SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
+          const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
       itemCount: _imageUrls.length + 1, // Dodaj 1 dla przycisku dodawania
       itemBuilder: (context, index) {
         if (index < _imageUrls.length) {
@@ -79,7 +81,7 @@ class _UserPhotosWidgetState extends State<UserPhotosWidget> {
                 color: Colors.grey[300],
                 border: Border.all(color: Colors.black38),
               ),
-              child: Icon(Icons.add, size: 50),
+              child: const Icon(Icons.add, size: 50),
             ),
           );
         }

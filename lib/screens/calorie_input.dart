@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'exercise_result.dart'; // Create this next
 
 class CalorieInputScreen extends StatefulWidget {
+  const CalorieInputScreen({super.key});
+
   @override
   _CalorieInputScreenState createState() => _CalorieInputScreenState();
 }
@@ -12,18 +14,18 @@ class _CalorieInputScreenState extends State<CalorieInputScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Spalaj kalorie')),
+      appBar: AppBar(title: const Text('Spalaj kalorie')),
       body: Padding(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
             TextField(
               controller: _calorieController,
               keyboardType: TextInputType.number,
               decoration:
-                  InputDecoration(labelText: 'Ile kalorii chcesz spalić'),
+                  const InputDecoration(labelText: 'Ile kalorii chcesz spalić'),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
                 int calories = int.tryParse(_calorieController.text) ?? 0;
@@ -37,7 +39,7 @@ class _CalorieInputScreenState extends State<CalorieInputScreen> {
                   );
                 }
               },
-              child: Text('Pokaż ćwiczenia'),
+              child: const Text('Pokaż ćwiczenia'),
             ),
           ],
         ),

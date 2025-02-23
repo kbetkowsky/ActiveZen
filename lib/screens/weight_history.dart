@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:fl_chart/fl_chart.dart';
 
 class WeightHistoryScreen extends StatelessWidget {
+  const WeightHistoryScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     final user = FirebaseAuth.instance.currentUser;
 
     return Scaffold(
-      appBar: AppBar(title: Text("Historia BMI")),
+      appBar: AppBar(title: const Text("Historia BMI")),
       body: StreamBuilder<QuerySnapshot>(
         stream: FirebaseFirestore.instance
             .collection('bmiHistory')
@@ -18,13 +19,13 @@ class WeightHistoryScreen extends StatelessWidget {
             .snapshots(),
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           }
 
           var docs = snapshot.data!.docs;
 
           if (docs.isEmpty) {
-            return Center(child: Text("Brak zapisanej historii BMI."));
+            return const Center(child: Text("Brak zapisanej historii BMI."));
           }
 
           return ListView.builder(
@@ -39,7 +40,7 @@ class WeightHistoryScreen extends StatelessWidget {
               }
 
               return Card(
-                margin: EdgeInsets.all(10),
+                margin: const EdgeInsets.all(10),
                 child: ListTile(
                   title: Text("BMI: ${data['bmi'].toStringAsFixed(2)}"),
                   subtitle: Text("Zapisano: ${date.toLocal()}"),

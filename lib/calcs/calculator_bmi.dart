@@ -3,6 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class BmiCalculatorScreen extends StatefulWidget {
+  const BmiCalculatorScreen({super.key});
+
   @override
   _BmiCalculatorScreenState createState() => _BmiCalculatorScreenState();
 }
@@ -18,7 +20,7 @@ class _BmiCalculatorScreenState extends State<BmiCalculatorScreen> {
 
     if (height == null || weight == null || height <= 0 || weight <= 0) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Wprowadź poprawne dane!')),
+        const SnackBar(content: Text('Wprowadź poprawne dane!')),
       );
       return;
     }
@@ -54,22 +56,22 @@ class _BmiCalculatorScreenState extends State<BmiCalculatorScreen> {
     });
 
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('BMI wynik zapisany!')),
+      const SnackBar(content: Text('BMI wynik zapisany!')),
     );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Kalkulator BMI')),
+      appBar: AppBar(title: const Text('Kalkulator BMI')),
       body: SingleChildScrollView(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           children: <Widget>[
             TextField(
               controller: _heightController,
               keyboardType: TextInputType.number,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Wzrost (cm)',
                 icon: Icon(Icons.trending_up),
               ),
@@ -77,33 +79,34 @@ class _BmiCalculatorScreenState extends State<BmiCalculatorScreen> {
             TextField(
               controller: _weightController,
               keyboardType: TextInputType.number,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Waga (kg)',
                 icon: Icon(Icons.line_weight),
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             ElevatedButton(
               onPressed: calculateBMI,
-              child: Text('Oblicz BMI'),
+              child: const Text('Oblicz BMI'),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Text(
               _resultText.isEmpty
                   ? 'Wprowadź dane'
                   : 'Twój wynik: $_resultText',
-              style: TextStyle(fontSize: 18),
+              style: const TextStyle(fontSize: 18),
               textAlign: TextAlign.center,
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => BmiHistoryScreen()),
+                  MaterialPageRoute(
+                      builder: (context) => const BmiHistoryScreen()),
                 );
               },
-              child: Text('Historia BMI'),
+              child: const Text('Historia BMI'),
             ),
           ],
         ),
@@ -120,12 +123,14 @@ class _BmiCalculatorScreenState extends State<BmiCalculatorScreen> {
 }
 
 class BmiHistoryScreen extends StatelessWidget {
+  const BmiHistoryScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     User? user = FirebaseAuth.instance.currentUser;
 
     return Scaffold(
-      appBar: AppBar(title: Text('Historia BMI')),
+      appBar: AppBar(title: const Text('Historia BMI')),
       body: StreamBuilder<QuerySnapshot>(
         stream: FirebaseFirestore.instance
             .collection('bmiHistory')
@@ -134,7 +139,7 @@ class BmiHistoryScreen extends StatelessWidget {
             .snapshots(),
         builder: (context, snapshot) {
           if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-            return Center(child: Text("Brak zapisanej historii BMI"));
+            return const Center(child: Text("Brak zapisanej historii BMI"));
           }
 
           List<DocumentSnapshot> docs = snapshot.data!.docs;
@@ -153,7 +158,7 @@ class BmiHistoryScreen extends StatelessWidget {
               return ListTile(
                 title: Text(resultText),
                 subtitle: Text('Godzina: $formattedTime'),
-                leading: Icon(Icons.bar_chart),
+                leading: const Icon(Icons.bar_chart),
               );
             },
           );

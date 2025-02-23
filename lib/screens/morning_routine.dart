@@ -4,11 +4,13 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:lottie/lottie.dart';
 
 class MorningRoutineScreen extends StatelessWidget {
+  const MorningRoutineScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Poranny Rozruch'),
+        title: const Text('Poranny Rozruch'),
       ),
       body: Center(
         child: Column(
@@ -30,10 +32,11 @@ class MorningRoutineScreen extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => JumpingJacksScreen()),
+                  MaterialPageRoute(
+                      builder: (context) => const JumpingJacksScreen()),
                 );
               },
-              child: Text('Zaczynamy'),
+              child: const Text('Zaczynamy'),
             ),
           ],
         ),
@@ -43,14 +46,16 @@ class MorningRoutineScreen extends StatelessWidget {
 }
 
 class ExerciseScreen extends StatelessWidget {
+  const ExerciseScreen({super.key});
+
   // Tutaj można zaimplementować ekran z ćwiczeniami
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Ćwiczenia poranne'),
+        title: const Text('Ćwiczenia poranne'),
       ),
-      body: Center(
+      body: const Center(
           // Zawartość ekranu z ćwiczeniami
           ),
     );

@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class ViewPostsPage extends StatelessWidget {
+  const ViewPostsPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Posty'),
+        title: const Text('Posty'),
       ),
       body: StreamBuilder(
         stream: FirebaseFirestore.instance
@@ -16,10 +18,10 @@ class ViewPostsPage extends StatelessWidget {
             .snapshots(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.hasError) {
-            return Text('Wystąpił błąd');
+            return const Text('Wystąpił błąd');
           }
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           }
 
           return ListView(
@@ -32,18 +34,16 @@ class ViewPostsPage extends StatelessWidget {
                   : [];
 
               return Card(
-                margin: EdgeInsets.all(10),
+                margin: const EdgeInsets.all(10),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    ...imageUrls
-                        .map((url) => Image.network(
-                              url,
-                              fit: BoxFit.cover,
-                              width: double.infinity,
-                              height: 200,
-                            ))
-                        .toList(),
+                    ...imageUrls.map((url) => Image.network(
+                          url,
+                          fit: BoxFit.cover,
+                          width: double.infinity,
+                          height: 200,
+                        )),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
@@ -59,7 +59,7 @@ class ViewPostsPage extends StatelessWidget {
                           horizontal: 8.0, vertical: 4.0),
                       child: Text(
                         data['content'],
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 16,
                         ),
                       ),
@@ -71,7 +71,7 @@ class ViewPostsPage extends StatelessWidget {
                       ),
                       title: Text(data['userName'] ?? 'Anonimowy użytkownik'),
                       trailing: IconButton(
-                        icon: Icon(Icons.comment),
+                        icon: const Icon(Icons.comment),
                         onPressed: () {
                           Navigator.push(
                             context,

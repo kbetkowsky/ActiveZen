@@ -21,12 +21,13 @@ class RegisterSucessful extends StatelessWidget {
                 "Rejestracja przebiegła pomyślnie. Teraz możesz się zalogować, klikając przycisk poniżej.",
                 textAlign: TextAlign.center, // Wyśrodkuj tekst
               ),
-              SizedBox(height: 16), // Dodaj odstęp pomiędzy elementami
+              const SizedBox(height: 16), // Dodaj odstęp pomiędzy elementami
               ElevatedButton(
                 onPressed: () async {
                   await Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const LoginScreen()),
+                    MaterialPageRoute(
+                        builder: (context) => const LoginScreen()),
                   );
                 },
                 style: ElevatedButton.styleFrom(

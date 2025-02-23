@@ -122,7 +122,7 @@ class _WeightTargetsPageState extends State<WeightTargetsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Cele wagowe')),
+      appBar: AppBar(title: const Text('Cele wagowe')),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -146,22 +146,22 @@ class _WeightTargetsPageState extends State<WeightTargetsPage> {
               ),
               TextField(
                 controller: _weightController,
-                decoration: InputDecoration(labelText: 'Waga (kg)'),
+                decoration: const InputDecoration(labelText: 'Waga (kg)'),
                 keyboardType: TextInputType.number,
               ),
               TextField(
                 controller: _heightController,
-                decoration: InputDecoration(labelText: 'Wzrost (cm)'),
+                decoration: const InputDecoration(labelText: 'Wzrost (cm)'),
                 keyboardType: TextInputType.number,
               ),
               TextField(
                 controller: _targetWeightController,
-                decoration: InputDecoration(labelText: 'Cel Wagowy (kg)'),
+                decoration: const InputDecoration(labelText: 'Cel Wagowy (kg)'),
                 keyboardType: TextInputType.number,
               ),
               TextField(
                 controller: _ageController,
-                decoration: InputDecoration(labelText: 'Wiek (lata)'),
+                decoration: const InputDecoration(labelText: 'Wiek (lata)'),
                 keyboardType: TextInputType.number,
               ),
               ElevatedButton(
@@ -169,28 +169,28 @@ class _WeightTargetsPageState extends State<WeightTargetsPage> {
                   _calculateWeightTarget();
                   _saveUserInfo();
                 },
-                child: Text('Oblicz i Zapisz'),
+                child: const Text('Oblicz i Zapisz'),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Text(resultText),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: _addWeight,
-                child: Text('Dodaj Wagę'),
+                child: const Text('Dodaj Wagę'),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               SizedBox(
                 height: 300,
                 child: FutureBuilder(
                   future: _getWeights(),
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.waiting) {
-                      return Center(child: CircularProgressIndicator());
+                      return const Center(child: CircularProgressIndicator());
                     }
                     if (snapshot.hasData && snapshot.data!.isNotEmpty) {
                       return WeightGraph(weightData: snapshot.data!);
                     }
-                    return Center(child: Text("Brak danych o wadze."));
+                    return const Center(child: Text("Brak danych o wadze."));
                   },
                 ),
               ),
@@ -205,7 +205,7 @@ class _WeightTargetsPageState extends State<WeightTargetsPage> {
 /// Weight Graph to show progress
 class WeightGraph extends StatelessWidget {
   final List<Map<String, dynamic>> weightData;
-  WeightGraph({required this.weightData});
+  const WeightGraph({super.key, required this.weightData});
 
   @override
   Widget build(BuildContext context) {
@@ -230,7 +230,7 @@ class WeightGraph extends StatelessWidget {
             isCurved: true,
             color: Colors.blue,
             barWidth: 3,
-            dotData: FlDotData(show: true),
+            dotData: const FlDotData(show: true),
           ),
         ],
       ),

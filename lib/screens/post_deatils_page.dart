@@ -4,7 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class PostDetailsPage extends StatefulWidget {
   final String documentId;
 
-  PostDetailsPage({required this.documentId});
+  const PostDetailsPage({super.key, required this.documentId});
 
   @override
   _PostDetailsPageState createState() => _PostDetailsPageState();
@@ -44,7 +44,7 @@ class _PostDetailsPageState extends State<PostDetailsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Szczegóły postu'),
+        title: const Text('Szczegóły postu'),
       ),
       body: Column(
         children: [
@@ -55,7 +55,7 @@ class _PostDetailsPageState extends State<PostDetailsPage> {
                   .doc(widget.documentId)
                   .snapshots(),
               builder: (context, snapshot) {
-                if (!snapshot.hasData) return CircularProgressIndicator();
+                if (!snapshot.hasData) return const CircularProgressIndicator();
 
                 var post = snapshot.data!.data() as Map<String, dynamic>;
                 var comments = List.from(post['comments'] ?? []);
@@ -67,35 +67,36 @@ class _PostDetailsPageState extends State<PostDetailsPage> {
                       title: Text(
                           'Polubienia: $likes'), // Wyświetla liczbę polubień
                       trailing: IconButton(
-                        icon: Icon(Icons.thumb_up),
+                        icon: const Icon(Icons.thumb_up),
                         onPressed: addLike, // Dodaje polubienie
                       ),
                     ),
-                    Divider(),
+                    const Divider(),
                     ...comments.map((comment) {
                       return ListTile(
                         title: Text(comment['text']),
                         subtitle:
                             Text(comment['timestamp'].toDate().toString()),
                       );
-                    }).toList(),
+                    }),
                   ],
                 );
               },
             ),
           ),
           Padding(
-            padding: EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(8.0),
             child: Row(
               children: [
                 Expanded(
                   child: TextField(
                     controller: _commentController,
-                    decoration: InputDecoration(labelText: 'Dodaj komentarz'),
+                    decoration:
+                        const InputDecoration(labelText: 'Dodaj komentarz'),
                   ),
                 ),
                 IconButton(
-                  icon: Icon(Icons.send),
+                  icon: const Icon(Icons.send),
                   onPressed: addComment,
                 ),
               ],

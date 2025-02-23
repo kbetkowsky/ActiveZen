@@ -6,6 +6,8 @@ import 'dart:math' as math;
 import 'package:lottie/lottie.dart';
 
 class JumpingJacksScreen extends StatefulWidget {
+  const JumpingJacksScreen({super.key});
+
   @override
   _JumpingJacksScreenState createState() => _JumpingJacksScreenState();
 }
@@ -25,7 +27,7 @@ class _JumpingJacksScreenState extends State<JumpingJacksScreen> {
             // Przejście do następnego ekranu ćwiczeń
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => PushUpsScreen()),
+              MaterialPageRoute(builder: (context) => const PushUpsScreen()),
             );
           });
         } else {
@@ -53,7 +55,7 @@ class _JumpingJacksScreenState extends State<JumpingJacksScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Pajacyki'),
+        title: const Text('Pajacyki'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(24.0),
@@ -75,7 +77,7 @@ class _JumpingJacksScreenState extends State<JumpingJacksScreen> {
                       child: Center(
                         child: Text(
                           '$_start',
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 32,
                             fontWeight: FontWeight.bold,
                           ),
@@ -87,8 +89,8 @@ class _JumpingJacksScreenState extends State<JumpingJacksScreen> {
               ],
             ),
 
-            SizedBox(height: 30),
-            Text(
+            const SizedBox(height: 30),
+            const Text(
               'Pajacyki to prosty, ale skuteczny sposób na pobudzenie całego ciała. '
               'To dynamiczne ćwiczenie angażuje mięśnie nóg, ramion oraz brzucha, '
               'poprawiając krążenie i zwiększając tlenowanie organizmu. '
@@ -133,14 +135,16 @@ class TimerPainter extends CustomPainter {
 }
 
 class NextExerciseScreen extends StatelessWidget {
+  const NextExerciseScreen({super.key});
+
   // Implementacja kolejnego ekranu z ćwiczeniem
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Następne Ćwiczenie'),
+        title: const Text('Następne Ćwiczenie'),
       ),
-      body: Center(
+      body: const Center(
           // Zawartość następnego ekranu z ćwiczeniami
           ),
     );
