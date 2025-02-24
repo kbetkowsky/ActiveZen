@@ -4,6 +4,7 @@ import 'package:fitappv2/func/sleep_tracker.dart';
 import 'package:fitappv2/func/user_photos_widget.dart';
 import 'package:fitappv2/screens/add_post_page.dart';
 import 'package:fitappv2/screens/calorie_input.dart';
+import 'package:fitappv2/screens/eat_tracker.dart';
 import 'package:fitappv2/screens/exercise_history.dart';
 import 'package:fitappv2/screens/morning_routine.dart';
 import 'package:fitappv2/screens/user_profile_page.dart';
@@ -186,6 +187,9 @@ class AppDrawer extends StatelessWidget {
           ),
           _drawerItem(Icons.api, 'API', () {
             _navigateTo(context, WorkoutScreen());
+          }),
+          _drawerItem(Icons.dinner_dining, 'Eat Tracker', () {
+            _navigateTo(context, FoodCalorieChecker());
           }),
         ],
       ),
