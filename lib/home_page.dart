@@ -9,6 +9,7 @@ import 'package:fitappv2/screens/morning_routine.dart';
 import 'package:fitappv2/screens/user_profile_page.dart';
 import 'package:fitappv2/screens/view_post_screen.dart';
 import 'package:fitappv2/screens/weight_history.dart';
+import 'package:fitappv2/screens/workout_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:lottie/lottie.dart';
@@ -183,6 +184,9 @@ class AppDrawer extends StatelessWidget {
               _navigateTo(context, const ExerciseHistoryScreen());
             },
           ),
+          _drawerItem(Icons.api, 'API', () {
+            _navigateTo(context, WorkoutScreen());
+          }),
         ],
       ),
     );
