@@ -1,10 +1,9 @@
 class Post {
   String id;
-  String text; // Zamiast 'title'
-  String
-      content; // Jeżeli pole 'content' jest inne w Firestore, zmień też tutaj
-  DateTime date; // Zamiast 'dateCreated'
-  String userId; // Zamiast 'authorId'
+  String text;
+  String content;
+  DateTime date;
+  String userId;
 
   Post({
     required this.id,

@@ -14,8 +14,8 @@ class WeightHistoryScreen extends StatelessWidget {
       body: StreamBuilder<QuerySnapshot>(
         stream: FirebaseFirestore.instance
             .collection('bmiHistory')
-            .where('uid', isEqualTo: user?.uid) // Filter by user
-            .orderBy('timestamp', descending: true) // Sort by newest first
+            .where('uid', isEqualTo: user?.uid)
+            .orderBy('timestamp', descending: true)
             .snapshots(),
         builder: (context, snapshot) {
           if (!snapshot.hasData) {

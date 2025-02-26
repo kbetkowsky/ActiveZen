@@ -32,7 +32,6 @@ class _PostDetailsPageState extends State<PostDetailsPage> {
           {
             'text': _commentController.text,
             'timestamp': DateTime.now(),
-            // Dodaj więcej danych o komentarzu (np. userId) według potrzeb
           }
         ]),
       });
@@ -59,16 +58,15 @@ class _PostDetailsPageState extends State<PostDetailsPage> {
 
                 var post = snapshot.data!.data() as Map<String, dynamic>;
                 var comments = List.from(post['comments'] ?? []);
-                var likes = post['likes'] ?? 0; // Pobiera liczbę polubień
+                var likes = post['likes'] ?? 0;
 
                 return ListView(
                   children: [
                     ListTile(
-                      title: Text(
-                          'Polubienia: $likes'), // Wyświetla liczbę polubień
+                      title: Text('Polubienia: $likes'),
                       trailing: IconButton(
                         icon: const Icon(Icons.thumb_up),
-                        onPressed: addLike, // Dodaje polubienie
+                        onPressed: addLike,
                       ),
                     ),
                     const Divider(),

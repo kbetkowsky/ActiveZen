@@ -14,7 +14,7 @@ class JumpingJacksScreen extends StatefulWidget {
 
 class _JumpingJacksScreenState extends State<JumpingJacksScreen> {
   late Timer _timer;
-  int _start = 3;
+  int _start = 5;
 
   void startTimer() {
     const oneSec = Duration(seconds: 1);
@@ -24,7 +24,6 @@ class _JumpingJacksScreenState extends State<JumpingJacksScreen> {
         if (_start == 0) {
           setState(() {
             timer.cancel();
-            // Przejście do następnego ekranu ćwiczeń
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => const PushUpsScreen()),
@@ -73,7 +72,7 @@ class _JumpingJacksScreenState extends State<JumpingJacksScreen> {
                   child: SizedBox(
                     height: 200,
                     child: CustomPaint(
-                      painter: TimerPainter(progress: _start / 3),
+                      painter: TimerPainter(progress: _start / 5),
                       child: Center(
                         child: Text(
                           '$_start',
@@ -88,7 +87,6 @@ class _JumpingJacksScreenState extends State<JumpingJacksScreen> {
                 ),
               ],
             ),
-
             const SizedBox(height: 30),
             const Text(
               'Pajacyki to prosty, ale skuteczny sposób na pobudzenie całego ciała. '
@@ -99,7 +97,6 @@ class _JumpingJacksScreenState extends State<JumpingJacksScreen> {
               'oraz wspomóc spalanie kalorii.',
               style: TextStyle(fontSize: 16),
             ),
-            // Dodatkowe elementy UI
           ],
         ),
       ),
@@ -137,16 +134,13 @@ class TimerPainter extends CustomPainter {
 class NextExerciseScreen extends StatelessWidget {
   const NextExerciseScreen({super.key});
 
-  // Implementacja kolejnego ekranu z ćwiczeniem
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Następne Ćwiczenie'),
       ),
-      body: const Center(
-          // Zawartość następnego ekranu z ćwiczeniami
-          ),
+      body: const Center(),
     );
   }
 }

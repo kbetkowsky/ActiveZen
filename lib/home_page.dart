@@ -1,7 +1,6 @@
 import 'package:fitappv2/calcs/calculator_bmi.dart';
 import 'package:fitappv2/calcs/weight_targets.dart';
 import 'package:fitappv2/func/sleep_tracker.dart';
-import 'package:fitappv2/func/user_photos_widget.dart';
 import 'package:fitappv2/screens/add_post_page.dart';
 import 'package:fitappv2/screens/calorie_input.dart';
 import 'package:fitappv2/screens/eat_tracker.dart';
@@ -9,7 +8,6 @@ import 'package:fitappv2/screens/exercise_history.dart';
 import 'package:fitappv2/screens/morning_routine.dart';
 import 'package:fitappv2/screens/user_profile_page.dart';
 import 'package:fitappv2/screens/view_post_screen.dart';
-import 'package:fitappv2/screens/weight_history.dart';
 import 'package:fitappv2/screens/workout_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -60,7 +58,7 @@ class _MainScreenState extends State<MainScreen> {
       bottomNavigationBar: BottomNavigationBar(
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profil'),
         ],
         currentIndex: _selectedIndex,
         selectedItemColor: Colors.blue,
@@ -146,66 +144,255 @@ class AppDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      child: ListView(
-        padding: EdgeInsets.zero,
-        children: [
-          const DrawerHeader(
-            decoration: BoxDecoration(color: Colors.blue),
-            child: Text(
-              'Menu Aktywności',
-              style: TextStyle(color: Colors.white, fontSize: 24),
+      child: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [Colors.blue.shade50, Colors.white],
+          ),
+        ),
+        child: Column(
+          children: [
+            Container(
+              height: 180,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: [Colors.blue.shade700, Colors.blue.shade500],
+                ),
+                borderRadius: const BorderRadius.only(
+                  bottomRight: Radius.circular(30),
+                ),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.1),
+                    blurRadius: 10,
+                    offset: const Offset(0, 5),
+                  ),
+                ],
+              ),
+              child: Stack(
+                children: [
+                  Positioned(
+                    bottom: 20,
+                    left: 16,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        CircleAvatar(
+                          radius: 30,
+                          backgroundColor: Colors.white,
+                          child: Icon(
+                            Icons.fitness_center,
+                            size: 30,
+                            color: Colors.blue.shade700,
+                          ),
+                        ),
+                        const SizedBox(width: 16),
+                        const Text(
+                          'Active Zen',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
-          _drawerItem(Icons.fitness_center, 'Poranny rozruch', () {
-            _navigateTo(context, const MorningRoutineScreen());
-          }),
-          _drawerItem(Icons.balance, 'Kalkulator BMI', () {
-            _navigateTo(context, const BmiCalculatorScreen());
-          }),
-          _drawerItem(Icons.assessment, 'Cele wagowe', () {
-            _navigateTo(context, const WeightTargetsPage());
-          }),
-          _drawerItem(Icons.single_bed_sharp, 'Zdrowy sen', () {
-            _navigateTo(context, SleepTrackerWidget());
-          }),
-          _drawerItem(Icons.add, 'Dodaj Post', () {
-            _navigateTo(context, const AddPostPage());
-          }),
-          _drawerItem(Icons.data_array, 'Wyświetl posty', () {
-            _navigateTo(context, const ViewPostsPage());
-          }),
-          _drawerItem(
-              Icons.local_fire_department, 'Ćwiczenia do spalenia kalorii', () {
-            _navigateTo(context, const CalorieInputScreen());
-          }),
-          _drawerItem(
-            Icons.history,
-            'Historia ćwiczeń',
-            () {
-              _navigateTo(context, const ExerciseHistoryScreen());
-            },
-          ),
-          _drawerItem(Icons.api, 'API', () {
-            _navigateTo(context, WorkoutScreen());
-          }),
-          _drawerItem(Icons.dinner_dining, 'Eat Tracker', () {
-            _navigateTo(context, FoodCalorieChecker());
-          }),
-        ],
+            Padding(
+              padding: const EdgeInsets.fromLTRB(16, 16, 16, 8),
+              child: Row(
+                children: [
+                  Icon(Icons.category, color: Colors.grey.shade700, size: 18),
+                  const SizedBox(width: 8),
+                  Text(
+                    'KATEGORIE',
+                    style: TextStyle(
+                      color: Colors.grey.shade700,
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 1.2,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Divider(color: Colors.grey.shade400, thickness: 1),
+            ),
+            Expanded(
+              child: ListView(
+                padding: const EdgeInsets.only(top: 8),
+                children: [
+                  _categorySection(
+                    context,
+                    "Aktywność",
+                    [
+                      _drawerItem(
+                        context,
+                        Icons.fitness_center,
+                        'Poranny Rozruch',
+                        const MorningRoutineScreen(),
+                        Colors.orange,
+                      ),
+                      _drawerItem(
+                        context,
+                        Icons.local_fire_department,
+                        'Ćwiczenia Do Spalenia Kalorii',
+                        const CalorieInputScreen(),
+                        Colors.orange,
+                      ),
+                      _drawerItem(
+                        context,
+                        Icons.find_in_page_outlined,
+                        'Znajdź Ćwiczenie',
+                        WorkoutScreen(),
+                        Colors.orange,
+                      ),
+                      _drawerItem(
+                        context,
+                        Icons.history,
+                        'Historia Ćwiczeń',
+                        const ExerciseHistoryScreen(),
+                        Colors.orange,
+                      ),
+                    ],
+                  ),
+                  _categorySection(
+                    context,
+                    "Zdrowie",
+                    [
+                      _drawerItem(
+                        context,
+                        Icons.balance,
+                        'BMI',
+                        const BmiCalculatorScreen(),
+                        Colors.green,
+                      ),
+                      _drawerItem(
+                        context,
+                        Icons.single_bed_sharp,
+                        'Zdrowy Sen',
+                        SleepTrackerWidget(),
+                        Colors.green,
+                      ),
+                    ],
+                  ),
+                  _categorySection(
+                    context,
+                    "Żywienie",
+                    [
+                      _drawerItem(
+                        context,
+                        Icons.fastfood,
+                        'Sprawdź Kalorie',
+                        FoodCalorieChecker(),
+                        Colors.red,
+                      ),
+                      _drawerItem(
+                        context,
+                        Icons.assessment,
+                        'Cele Wagowe',
+                        const WeightTargetsPage(),
+                        Colors.red,
+                      ),
+                    ],
+                  ),
+                  _categorySection(
+                    context,
+                    "Społeczność",
+                    [
+                      _drawerItem(
+                        context,
+                        Icons.add,
+                        'Dodaj Post',
+                        const AddPostPage(),
+                        Colors.purple,
+                      ),
+                      _drawerItem(
+                        context,
+                        Icons.data_array,
+                        'Wyświetl Posty',
+                        const ViewPostsPage(),
+                        Colors.purple,
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
 
-  Widget _drawerItem(IconData icon, String title, VoidCallback onTap) {
-    return ListTile(
-      leading: Icon(icon),
-      title: Text(title),
-      onTap: onTap,
+  Widget _categorySection(
+      BuildContext context, String title, List<Widget> items) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.fromLTRB(20, 16, 16, 8),
+          child: Text(
+            title,
+            style: TextStyle(
+              color: Colors.grey.shade800,
+              fontSize: 15,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+        ),
+        ...items,
+        const SizedBox(height: 8),
+      ],
     );
   }
 
-  void _navigateTo(BuildContext context, Widget page) {
-    Navigator.pop(context);
-    Navigator.push(context, MaterialPageRoute(builder: (context) => page));
+  Widget _drawerItem(
+    BuildContext context,
+    IconData icon,
+    String title,
+    Widget destination,
+    Color iconColor,
+  ) {
+    return ListTile(
+      contentPadding: const EdgeInsets.symmetric(horizontal: 24),
+      leading: Container(
+        padding: const EdgeInsets.all(8),
+        decoration: BoxDecoration(
+          color: iconColor.withOpacity(0.1),
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: Icon(icon, color: iconColor),
+      ),
+      title: Text(
+        title,
+        style: const TextStyle(
+          fontWeight: FontWeight.w500,
+        ),
+      ),
+      trailing:
+          Icon(Icons.arrow_forward_ios, size: 16, color: Colors.grey.shade400),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10),
+      ),
+      onTap: () {
+        Navigator.pop(context);
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => destination),
+        );
+      },
+    );
   }
 }

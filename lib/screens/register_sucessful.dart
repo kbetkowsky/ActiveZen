@@ -12,16 +12,15 @@ class RegisterSucessful extends StatelessWidget {
         padding: const EdgeInsets.all(16.0),
         child: Center(
           child: Column(
-            // Wyrównaj do góry
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Lottie.asset('images/register_successful.json'),
-              const SizedBox(height: 16), // Dodaj odstęp pomiędzy elementami
+              const SizedBox(height: 16),
               const Text(
                 "Rejestracja przebiegła pomyślnie. Teraz możesz się zalogować, klikając przycisk poniżej.",
-                textAlign: TextAlign.center, // Wyśrodkuj tekst
+                textAlign: TextAlign.center,
               ),
-              const SizedBox(height: 16), // Dodaj odstęp pomiędzy elementami
+              const SizedBox(height: 16),
               ElevatedButton(
                 onPressed: () async {
                   await Navigator.push(
@@ -31,12 +30,11 @@ class RegisterSucessful extends StatelessWidget {
                   );
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.white, // Ustaw kolor tła na biały
+                  backgroundColor: Colors.white,
                 ),
                 child: const Text(
                   'Zaloguj się',
-                  style: TextStyle(
-                      color: Colors.black), // Ustaw kolor tekstu na czarny
+                  style: TextStyle(color: Colors.black),
                 ),
               ),
             ],

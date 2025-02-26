@@ -6,7 +6,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 class ExerciseTimerScreen extends StatefulWidget {
   final String exerciseName;
   final int minutes;
-  final double caloriesPerMinute; // from your exercise document
+  final double caloriesPerMinute;
 
   const ExerciseTimerScreen({
     super.key,
@@ -23,7 +23,7 @@ class _ExerciseTimerScreenState extends State<ExerciseTimerScreen> {
   late int _secondsRemaining;
   Timer? _timer;
   bool isRunning = false;
-  bool finished = false; // indicates when the timer has reached 0
+  bool finished = false;
 
   @override
   void initState() {
@@ -32,7 +32,7 @@ class _ExerciseTimerScreenState extends State<ExerciseTimerScreen> {
   }
 
   void _startTimer() {
-    if (_timer != null) return; // Timer already running.
+    if (_timer != null) return;
     setState(() {
       isRunning = true;
     });
@@ -75,10 +75,8 @@ class _ExerciseTimerScreenState extends State<ExerciseTimerScreen> {
   Future<void> _saveExerciseHistory() async {
     User? user = FirebaseAuth.instance.currentUser;
     if (user == null) {
-      // Optionally show an error message if the user is not logged in.
       return;
     }
-    // Use the intended minutes (or you could use the elapsed time if you prefer).
     int minutes = widget.minutes;
     int caloriesBurned = (minutes * widget.caloriesPerMinute).toInt();
 
@@ -91,7 +89,7 @@ class _ExerciseTimerScreenState extends State<ExerciseTimerScreen> {
     });
 
     ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Exercise saved to history!')),
+      const SnackBar(content: Text('Ćwiczenie zapisane w historii')),
     );
   }
 
@@ -115,19 +113,18 @@ class _ExerciseTimerScreenState extends State<ExerciseTimerScreen> {
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: isRunning ? _stopTimer : _startTimer,
-              child: Text(isRunning ? 'Pause Timer' : 'Start Timer'),
+              child: Text(isRunning ? 'Pauzuj Licznik' : 'Uruchom Licznik'),
             ),
             const SizedBox(height: 10),
             ElevatedButton(
               onPressed: _resetTimer,
-              child: const Text('Reset Timer'),
+              child: const Text('Resetuj Licznik'),
             ),
             const SizedBox(height: 20),
-            // Show the "Finished Exercise" button when timer is complete or at any time if desired.
             if (finished || !isRunning)
               ElevatedButton(
                 onPressed: _saveExerciseHistory,
-                child: const Text('Finished Exercise'),
+                child: const Text('Zakończ Ćwiczenie'),
               ),
           ],
         ),

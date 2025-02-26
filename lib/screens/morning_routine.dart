@@ -48,16 +48,13 @@ class MorningRoutineScreen extends StatelessWidget {
 class ExerciseScreen extends StatelessWidget {
   const ExerciseScreen({super.key});
 
-  // Tutaj można zaimplementować ekran z ćwiczeniami
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Ćwiczenia poranne'),
       ),
-      body: const Center(
-          // Zawartość ekranu z ćwiczeniami
-          ),
+      body: const Center(),
     );
   }
 }

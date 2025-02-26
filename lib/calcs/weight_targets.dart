@@ -24,7 +24,6 @@ class _WeightTargetsPageState extends State<WeightTargetsPage> {
     _loadUserInfo();
   }
 
-  /// Add user weight to Firestore
   Future<void> _addWeight() async {
     double weight = double.tryParse(_weightController.text) ?? 0;
     if (weight <= 0) return;
@@ -49,7 +48,6 @@ class _WeightTargetsPageState extends State<WeightTargetsPage> {
     setState(() {});
   }
 
-  /// Retrieve user weight history from Firestore
   Future<List<Map<String, dynamic>>> _getWeights() async {
     String uid = FirebaseAuth.instance.currentUser!.uid;
     final CollectionReference weightCollection = FirebaseFirestore.instance
@@ -65,7 +63,6 @@ class _WeightTargetsPageState extends State<WeightTargetsPage> {
         .toList();
   }
 
-  /// Save user details (height, age, target weight)
   Future<void> _saveUserInfo() async {
     String uid = FirebaseAuth.instance.currentUser!.uid;
     final DocumentReference userInfoDoc =
@@ -79,7 +76,6 @@ class _WeightTargetsPageState extends State<WeightTargetsPage> {
     });
   }
 
-  /// Load user details and autofill fields
   Future<void> _loadUserInfo() async {
     String uid = FirebaseAuth.instance.currentUser!.uid;
     final DocumentReference userInfoDoc =
@@ -97,12 +93,21 @@ class _WeightTargetsPageState extends State<WeightTargetsPage> {
     }
   }
 
-  /// Calculate weight target
   void _calculateWeightTarget() {
-    double weight = double.parse(_weightController.text);
-    double height = double.parse(_heightController.text);
-    double targetWeight = double.parse(_targetWeightController.text);
-    int age = int.parse(_ageController.text);
+    double? weight = double.tryParse(_weightController.text);
+    double? height = double.tryParse(_heightController.text);
+    double? targetWeight = double.tryParse(_targetWeightController.text);
+    int? age = int.tryParse(_ageController.text);
+
+    if (weight == null ||
+        height == null ||
+        targetWeight == null ||
+        age == null) {
+      setState(() {
+        resultText = 'Proszę wprowadzić poprawne wartości.';
+      });
+      return;
+    }
 
     WeightTargets weightTargets = WeightTargets(
         weight: weight,
@@ -202,7 +207,6 @@ class _WeightTargetsPageState extends State<WeightTargetsPage> {
   }
 }
 
-/// Weight Graph to show progress
 class WeightGraph extends StatelessWidget {
   final List<Map<String, dynamic>> weightData;
   const WeightGraph({super.key, required this.weightData});
@@ -238,7 +242,6 @@ class WeightGraph extends StatelessWidget {
   }
 }
 
-/// Weight Target Calculation
 class WeightTargets {
   double weight;
   double height;

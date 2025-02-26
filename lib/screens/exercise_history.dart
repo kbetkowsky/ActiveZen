@@ -10,7 +10,7 @@ class ExerciseHistoryScreen extends StatelessWidget {
     String uid = FirebaseAuth.instance.currentUser?.uid ?? '';
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Exercise History')),
+      appBar: AppBar(title: const Text('Historia Ćwiczeń')),
       body: StreamBuilder<QuerySnapshot>(
         stream: FirebaseFirestore.instance
             .collection('exerciseHistory')
@@ -21,18 +21,16 @@ class ExerciseHistoryScreen extends StatelessWidget {
             return const Center(child: CircularProgressIndicator());
           }
           if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-            return const Center(child: Text('No history available.'));
+            return const Center(child: Text('Brak dostępnej historii.'));
           }
 
-          // Accumulate total minutes and calories
           int totalMinutes = 0;
           int totalCalories = 0;
 
-          // Build a list of ListTiles from the documents
           List<Widget> tiles = snapshot.data!.docs.map((doc) {
             Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
 
-            String exerciseName = data['exerciseName'] ?? 'No name';
+            String exerciseName = data['exerciseName'] ?? 'Brak nazwy';
             int minutes = data['minutes'] ?? 0;
             int calories = data['calories'] ?? 0;
 
@@ -42,19 +40,18 @@ class ExerciseHistoryScreen extends StatelessWidget {
             return ListTile(
               title: Text(exerciseName),
               subtitle: Text(
-                'Duration: $minutes min, Calories: $calories kcal',
+                'Czas trwania: $minutes min, Kalorie: $calories kcal',
               ),
             );
           }).toList();
 
           return Column(
             children: [
-              // Display the totals at the top
               Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: Text(
-                  'Total Minutes: $totalMinutes\n'
-                  'Total Calories: $totalCalories',
+                  'Całkowity czas: $totalMinutes min\n'
+                  'Całkowite kalorie: $totalCalories kcal',
                   style: const TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,

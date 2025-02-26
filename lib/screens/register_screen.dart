@@ -93,7 +93,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
       User user = userCredential.user!;
       print('Konto utworzone: ${userCredential.user?.email}');
-      // Przekierowanie do ekranu RegisterSuccessful
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => const RegisterSucessful()),

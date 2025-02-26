@@ -4,7 +4,7 @@ import 'package:fitappv2/screens/login_screen.dart';
 import 'package:fitappv2/screens/register_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:firebase_core/firebase_core.dart'; // Dla inicjalizacji Firebase
+import 'package:firebase_core/firebase_core.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -15,8 +15,7 @@ void main() async {
             appId: '1:236562288830:android:c0df68b0caded1128b0eef',
             messagingSenderId: '236562288830',
             projectId: 'fitappv2',
-            storageBucket:
-                'fitappv2.appspot.com', // Dodaj tutaj identyfikator bucketu
+            storageBucket: 'fitappv2.appspot.com',
           ),
         )
       : const SizedBox();
@@ -37,8 +36,7 @@ class _MyAppState extends State<MyApp> {
     return Scaffold(
       body: Center(
         child: Column(
-          mainAxisSize:
-              MainAxisSize.min, // Ogranicza rozmiar kolumny do zawartości
+          mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             Animate(
               effects: const [
@@ -46,7 +44,7 @@ class _MyAppState extends State<MyApp> {
                 SlideEffect()
               ],
               child: ClipOval(
-                child: Image.asset('images/logo.png'), // Ładuje obraz z zasobów
+                child: Image.asset('images/logo.png'),
               ),
             ),
             Animate(
@@ -54,8 +52,7 @@ class _MyAppState extends State<MyApp> {
               child: const Text("Active Zen - Twoja codzienna dawka energii"),
             ),
 
-            const SizedBox(
-                height: 20), // Dodaje pusty odstęp między obrazem a przyciskami
+            const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
                 Navigator.push(
@@ -65,7 +62,7 @@ class _MyAppState extends State<MyApp> {
               },
               child: const Text('Zaloguj się'),
             ),
-            const SizedBox(height: 10), // Odstęp między przyciskami
+            const SizedBox(height: 10),
             ElevatedButton(
               onPressed: () {
                 Navigator.push(

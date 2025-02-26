@@ -17,8 +17,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
   File? _image;
   final picker = ImagePicker();
   final String userId = FirebaseAuth.instance.currentUser!.uid;
-  String?
-      _downloadURL; // Przechowywanie adresu URL obecnego zdjęcia profilowego
+  String? _downloadURL;
 
   @override
   void initState() {

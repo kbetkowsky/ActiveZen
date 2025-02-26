@@ -26,7 +26,7 @@ class _UserPhotosWidgetState extends State<UserPhotosWidget> {
   }
 
   Future<void> _loadUserImages() async {
-    var userId = _auth.currentUser?.uid; // Uzyskaj ID bieżącego użytkownika
+    var userId = _auth.currentUser?.uid;
     if (userId != null) {
       var snapshot = await _firestore
           .collection('userImages')
@@ -49,7 +49,6 @@ class _UserPhotosWidgetState extends State<UserPhotosWidget> {
           'userImages/${_auth.currentUser!.uid}/${DateTime.now().millisecondsSinceEpoch}_${file.uri.pathSegments.last}';
       var uploadTask = _storage.ref(fileName).putFile(file);
 
-      // Po zakończeniu przesyłania, zapisz URL do Firestore
       await uploadTask.then((res) async {
         var downloadUrl = await res.ref.getDownloadURL();
         await _firestore
@@ -66,26 +65,56 @@ class _UserPhotosWidgetState extends State<UserPhotosWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return GridView.builder(
-      gridDelegate:
-          const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
-      itemCount: _imageUrls.length + 1, // Dodaj 1 dla przycisku dodawania
-      itemBuilder: (context, index) {
-        if (index < _imageUrls.length) {
-          return Image.network(_imageUrls[index], fit: BoxFit.cover);
-        } else {
-          return GestureDetector(
-            onTap: _addImage,
-            child: Container(
-              decoration: BoxDecoration(
-                color: Colors.grey[300],
-                border: Border.all(color: Colors.black38),
-              ),
-              child: const Icon(Icons.add, size: 50),
-            ),
-          );
-        }
-      },
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Moje Zdjęcia'),
+        backgroundColor: Colors.teal,
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: GridView.builder(
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 3,
+            crossAxisSpacing: 8.0,
+            mainAxisSpacing: 8.0,
+          ),
+          itemCount: _imageUrls.length + 1,
+          itemBuilder: (context, index) {
+            if (index < _imageUrls.length) {
+              return ClipRRect(
+                borderRadius: BorderRadius.circular(8.0),
+                child: Image.network(
+                  _imageUrls[index],
+                  fit: BoxFit.cover,
+                  loadingBuilder: (context, child, loadingProgress) {
+                    if (loadingProgress == null) return child;
+                    return Center(
+                      child: CircularProgressIndicator(
+                        value: loadingProgress.expectedTotalBytes != null
+                            ? loadingProgress.cumulativeBytesLoaded /
+                                loadingProgress.expectedTotalBytes!
+                            : null,
+                      ),
+                    );
+                  },
+                ),
+              );
+            } else {
+              return GestureDetector(
+                onTap: _addImage,
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Colors.grey[300],
+                    borderRadius: BorderRadius.circular(8.0),
+                    border: Border.all(color: Colors.black38),
+                  ),
+                  child: const Icon(Icons.add, size: 50, color: Colors.teal),
+                ),
+              );
+            }
+          },
+        ),
+      ),
     );
   }
 }

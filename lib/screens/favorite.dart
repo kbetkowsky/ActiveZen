@@ -10,10 +10,10 @@ class FavoritesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Favorites"),
+        title: Text("Ulubione"),
       ),
       body: favorites.isEmpty
-          ? Center(child: Text("No favorites yet"))
+          ? Center(child: Text("Brak ulubionych ćwiczeń."))
           : ListView.builder(
               itemCount: favorites.length,
               itemBuilder: (context, index) {

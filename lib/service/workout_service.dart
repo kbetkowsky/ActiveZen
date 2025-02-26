@@ -5,7 +5,7 @@ class WorkoutService {
   static const String apiUrl =
       "https://exercisedb.p.rapidapi.com/exercises/bodyPart/";
   static const String apiKey =
-      "ce31c13c4dmsh987eb25d74642fap14cd69jsn94e2532e2247"; // Replace with your actual key
+      "ce31c13c4dmsh987eb25d74642fap14cd69jsn94e2532e2247";
 
   static Future<List<dynamic>> getWorkoutPlans(String bodyPart) async {
     try {

@@ -14,7 +14,7 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  bool _isLoading = false; // flaga do śledzenia stanu ładowania
+  bool _isLoading = false;
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +63,7 @@ class _LoginScreenState extends State<LoginScreen> {
   void _login() async {
     print('Rozpoczęcie procesu logowania...');
     setState(() {
-      _isLoading = true; // Pokaż wskaźnik ładowania
+      _isLoading = true;
     });
 
     try {
@@ -75,7 +75,6 @@ class _LoginScreenState extends State<LoginScreen> {
       );
 
       print('Logowanie zakończone sukcesem');
-      // Sukces, przenieś użytkownika do HomeScreen
       Navigator.pushReplacement(
           context, MaterialPageRoute(builder: (context) => const MainScreen()));
     } on FirebaseAuthException catch (e) {
@@ -91,7 +90,7 @@ class _LoginScreenState extends State<LoginScreen> {
       _showErrorDialog('Wystąpił błąd: $e');
     } finally {
       setState(() {
-        _isLoading = false; // Ukryj wskaźnik ładowania
+        _isLoading = false;
         print('Proces logowania zakończony');
       });
     }

@@ -20,7 +20,7 @@ class WorkoutDetailScreen extends StatelessWidget {
                 onFavorite!();
               }
               ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text('Added to favorites!')),
+                SnackBar(content: Text('Dodaj do ulubionych')),
               );
             },
           ),

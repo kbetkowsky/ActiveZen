@@ -13,38 +13,38 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
   List<dynamic> _workouts = [];
   bool _loading = false;
   List<dynamic> _favorites = []; // To store favorite workouts
+  String? _selectedBodyPart; // To store the selected body part
+
+  final List<String> allowedBodyParts = [
+    "back",
+    "cardio",
+    "chest",
+    "lower arms",
+    "lower legs",
+    "neck",
+    "shoulders",
+    "upper arms",
+    "upper legs",
+    "waist"
+  ];
 
   Future<void> fetchWorkouts() async {
     setState(() => _loading = true);
 
-    // Allowed body part parameters
-    final List<String> allowedBodyParts = [
-      "back",
-      "cardio",
-      "chest",
-      "lower arms",
-      "lower legs",
-      "neck",
-      "shoulders",
-      "upper arms",
-      "upper legs",
-      "waist"
-    ];
-
-    String input = _bodyPartController.text.toLowerCase().trim();
-    if (!allowedBodyParts.contains(input)) {
+    if (_selectedBodyPart == null ||
+        !allowedBodyParts.contains(_selectedBodyPart)) {
       setState(() => _loading = false);
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text(
-              "Parameter must be one of: back, cardio, chest, lower arms, lower legs, neck, shoulders, upper arms, upper legs, waist"),
+          content: Text("Parametr nieprawidłowy"),
         ),
       );
       return;
     }
 
     try {
-      List<dynamic> result = await WorkoutService.getWorkoutPlans(input);
+      List<dynamic> result =
+          await WorkoutService.getWorkoutPlans(_selectedBodyPart!);
       setState(() => _workouts = result);
     } catch (e) {
       setState(() => _workouts = [
@@ -59,7 +59,7 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Workout Plans"),
+        title: Text("Pobierz Ćwiczenie"),
         actions: [
           IconButton(
             icon: Icon(Icons.favorite),
@@ -78,17 +78,28 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            TextField(
-              controller: _bodyPartController,
-              decoration: InputDecoration(
-                labelText: "Enter Body Part (e.g., chest, legs, arms)",
+            DropdownButtonFormField<String>(
+              value: _selectedBodyPart,
+              decoration: const InputDecoration(
+                labelText: "Wybierz partie ciała",
                 border: OutlineInputBorder(),
               ),
+              items: allowedBodyParts.map((String bodyPart) {
+                return DropdownMenuItem<String>(
+                  value: bodyPart,
+                  child: Text(bodyPart),
+                );
+              }).toList(),
+              onChanged: (String? newValue) {
+                setState(() {
+                  _selectedBodyPart = newValue;
+                });
+              },
             ),
             SizedBox(height: 16),
             ElevatedButton(
               onPressed: fetchWorkouts,
-              child: Text("Get Workout Plan"),
+              child: Text("Pobierz"),
             ),
             SizedBox(height: 16),
             _loading

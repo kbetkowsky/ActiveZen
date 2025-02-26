@@ -14,7 +14,7 @@ class PushUpsScreen extends StatefulWidget {
 
 class _PushUpsScreenState extends State<PushUpsScreen> {
   late Timer _timer;
-  int _start = 3;
+  int _start = 5;
 
   void startTimer() {
     const oneSec = Duration(seconds: 1);
@@ -24,7 +24,6 @@ class _PushUpsScreenState extends State<PushUpsScreen> {
         if (_start == 0) {
           setState(() {
             timer.cancel();
-            // Navigate to the next exercise screen
             Navigator.push(
               context,
               MaterialPageRoute(
@@ -56,14 +55,14 @@ class _PushUpsScreenState extends State<PushUpsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Push Ups'),
+        title: const Text('Pompki'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(24.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-            const Text("Let's Start!",
+            const Text("Zaczynamy",
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24)),
             Row(
               children: [
@@ -74,7 +73,7 @@ class _PushUpsScreenState extends State<PushUpsScreen> {
                   child: SizedBox(
                     height: 200,
                     child: CustomPaint(
-                      painter: TimerPainter(progress: _start / 3),
+                      painter: TimerPainter(progress: _start / 5),
                       child: Center(
                         child: Text(
                           '$_start',
@@ -91,9 +90,9 @@ class _PushUpsScreenState extends State<PushUpsScreen> {
             ),
             const SizedBox(height: 30),
             const Text(
-              'Push Ups are a great exercise to strengthen your upper body. '
-              'They work your chest, shoulders, triceps, and core muscles. '
-              'Regular push ups can help improve your overall fitness and endurance.',
+              'Pompki to świetne ćwiczenie na wzmocnienie górnej części ciała. '
+              'Pracują nad klatką piersiową, ramionami, tricepsami i mięśniami brzucha. '
+              'Regularne pompki mogą pomóc poprawić ogólną kondycję i wytrzymałość.',
               style: TextStyle(fontSize: 16),
             ),
           ],
@@ -110,11 +109,9 @@ class NextExerciseScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Next Exercise'),
+        title: const Text('Następne Ćwiczenie'),
       ),
-      body: const Center(
-          // Content for the next exercise screen
-          ),
+      body: const Center(),
     );
   }
 }

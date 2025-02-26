@@ -48,11 +48,11 @@ class _SleepTrackerWidgetState extends State<SleepTrackerWidget> {
 
   String _calculateSleepMark(int sleepDuration) {
     if (sleepDuration >= 8) {
-      return "Good";
+      return "Dobry";
     } else if (sleepDuration >= 6) {
-      return "Average";
+      return "Średni";
     } else {
-      return "Poor";
+      return "Słaby";
     }
   }
 
@@ -72,7 +72,7 @@ class _SleepTrackerWidgetState extends State<SleepTrackerWidget> {
       });
 
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Sleep data saved! Sleep Score: $sleepMark')),
+        SnackBar(content: Text('Sen zapisany, twój wynik: $sleepMark')),
       );
     }
   }
@@ -87,13 +87,13 @@ class _SleepTrackerWidgetState extends State<SleepTrackerWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Sleep Tracker')),
+      appBar: AppBar(title: Text('Śledzenie snu')),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(20.0),
         child: Column(
           children: [
             Text(
-              "Sleep Tracker",
+              "Śledzenie snu",
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 20),
@@ -101,17 +101,17 @@ class _SleepTrackerWidgetState extends State<SleepTrackerWidget> {
               elevation: 4.0,
               child: ExpansionTile(
                 title: Text(
-                  'Log Sleep',
+                  'Zapisz sen',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
                 children: <Widget>[
                   ListTile(
-                    title: Text('Sleep Start'),
+                    title: Text('Początek snu'),
                     trailing: Text('${sleepStart.hour}:${sleepStart.minute}'),
                     onTap: () => _selectDateAndTime(context, true),
                   ),
                   ListTile(
-                    title: Text('Sleep End'),
+                    title: Text('Koniec snu'),
                     trailing: Text('${sleepEnd.hour}:${sleepEnd.minute}'),
                     onTap: () => _selectDateAndTime(context, false),
                   ),
@@ -120,7 +120,7 @@ class _SleepTrackerWidgetState extends State<SleepTrackerWidget> {
                         horizontal: 15, vertical: 10),
                     child: ElevatedButton(
                       onPressed: _saveSleepData,
-                      child: Text('Save Sleep Data'),
+                      child: Text('Zapisz dane snu'),
                     ),
                   ),
                   Padding(
@@ -128,7 +128,7 @@ class _SleepTrackerWidgetState extends State<SleepTrackerWidget> {
                         horizontal: 15, vertical: 10),
                     child: ElevatedButton(
                       onPressed: _viewSleepHistory,
-                      child: Text('View Sleep History'),
+                      child: Text('Zobacz historię snu'),
                     ),
                   ),
                 ],
@@ -145,7 +145,7 @@ class SleepHistoryPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Sleep History')),
+      appBar: AppBar(title: Text('Historia snu')),
       body: StreamBuilder<QuerySnapshot>(
         stream: FirebaseFirestore.instance
             .collection('sleepMarks')
@@ -157,7 +157,7 @@ class SleepHistoryPage extends StatelessWidget {
           }
           var sleepMarks = snapshot.data!.docs;
           if (sleepMarks.isEmpty) {
-            return Center(child: Text('No sleep history found.'));
+            return Center(child: Text('Brak zapisanej historii snu.'));
           }
           return ListView.builder(
             itemCount: sleepMarks.length,
@@ -167,14 +167,14 @@ class SleepHistoryPage extends StatelessWidget {
                 margin: EdgeInsets.all(8),
                 child: ListTile(
                   title: Text(
-                    'Slept from: ${_formatDate(sleepData['sleepStart'])} to ${_formatDate(sleepData['sleepEnd'])}',
+                    'Spałeś od: ${_formatDate(sleepData['sleepStart'])} do ${_formatDate(sleepData['sleepEnd'])}',
                   ),
                   subtitle: Text(
-                    'Duration: ${sleepData['sleepDuration']} hours | Mark: ${sleepData['sleepMark']}',
+                    'Czas trwania: ${sleepData['sleepDuration']} godzin | Ocena: ${sleepData['sleepMark']}',
                     style: TextStyle(
-                      color: sleepData['sleepMark'] == "Good"
+                      color: sleepData['sleepMark'] == "Dobry"
                           ? Colors.green
-                          : sleepData['sleepMark'] == "Average"
+                          : sleepData['sleepMark'] == "Średni"
                               ? Colors.orange
                               : Colors.red,
                       fontWeight: FontWeight.bold,

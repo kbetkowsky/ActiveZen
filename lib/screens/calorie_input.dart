@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'exercise_result.dart'; // Create this next
+import 'exercise_result.dart';
 
 class CalorieInputScreen extends StatefulWidget {
   const CalorieInputScreen({super.key});

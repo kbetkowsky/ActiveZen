@@ -25,7 +25,7 @@ class _BmiCalculatorScreenState extends State<BmiCalculatorScreen> {
       return;
     }
 
-    height = height / 100; // Convert cm to meters
+    height = height / 100;
     double bmi = weight / (height * height);
 
     setState(() {

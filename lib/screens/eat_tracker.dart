@@ -22,18 +22,16 @@ class _FoodCalorieCheckerState extends State<FoodCalorieChecker> {
     final String food = _foodController.text.trim();
     if (food.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Please enter a food name!')),
+        const SnackBar(content: Text('Proszę wprowadzić nazwę jedzenia!')),
       );
       return;
     }
 
-    // API URL (Without Filters)
     final url = Uri.parse(
         'https://edamam-food-and-grocery-database.p.rapidapi.com/api/food-database/v2/parser?ingr=$food');
 
     final headers = {
-      'x-rapidapi-key':
-          'ce31c13c4dmsh987eb25d74642fap14cd69jsn94e2532e2247', // Replace with actual API key
+      'x-rapidapi-key': 'ce31c13c4dmsh987eb25d74642fap14cd69jsn94e2532e2247',
       'x-rapidapi-host': 'edamam-food-and-grocery-database.p.rapidapi.com',
     };
 
@@ -56,23 +54,24 @@ class _FoodCalorieCheckerState extends State<FoodCalorieChecker> {
             });
           } else {
             setState(() {
-              _caloriesResult = "No calorie data found!";
+              _caloriesResult = "Brak danych o kaloriach!";
             });
           }
         } else {
           setState(() {
-            _caloriesResult = "No food data available!";
+            _caloriesResult = "Brak danych o jedzeniu!";
           });
         }
       } else {
         setState(() {
-          _caloriesResult = "Error fetching data! (${response.statusCode})";
+          _caloriesResult =
+              "Błąd podczas pobierania danych! (${response.statusCode})";
         });
       }
     } catch (e) {
       print("Exception: $e");
       setState(() {
-        _caloriesResult = "Network Error!";
+        _caloriesResult = "Błąd sieci!";
       });
     }
   }
@@ -80,7 +79,7 @@ class _FoodCalorieCheckerState extends State<FoodCalorieChecker> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Food Calorie Checker")),
+      appBar: AppBar(title: Text("Sprawdzanie Kalorii Jedzenia")),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -89,14 +88,14 @@ class _FoodCalorieCheckerState extends State<FoodCalorieChecker> {
             TextField(
               controller: _foodController,
               decoration: InputDecoration(
-                labelText: "Enter food name",
+                labelText: "Wprowadź nazwę jedzenia",
                 border: OutlineInputBorder(),
               ),
             ),
             SizedBox(height: 20),
             ElevatedButton(
               onPressed: fetchCalories,
-              child: Text("Get Calories"),
+              child: Text("Sprawdź Kalorie"),
             ),
             SizedBox(height: 20),
             Text(

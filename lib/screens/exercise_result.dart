@@ -33,7 +33,6 @@ class _ExerciseResultScreenState extends State<ExerciseResultScreen> {
     List<Map<String, dynamic>> plan = [];
     int totalCalories = 0;
 
-    // Divide the target calories equally among all exercises.
     double caloriesPerExercise = targetCalories / numExercises;
 
     for (var exercise in exercises) {
@@ -59,14 +58,14 @@ class _ExerciseResultScreenState extends State<ExerciseResultScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Exercise Plan'),
+        title: const Text('Plan Ćwiczeń'),
       ),
       body: Column(
         children: [
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: Text(
-              'Total Calories to be Burned: $totalCaloriesBurned kcal',
+              'Całkowite kalorie do spalenia: $totalCaloriesBurned kcal',
               style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
           ),
@@ -81,7 +80,7 @@ class _ExerciseResultScreenState extends State<ExerciseResultScreen> {
                   child: ListTile(
                     title: Text(exercise['name']),
                     subtitle: Text(
-                        '${exercise['minutes']} min | Burns ~${exercise['calories']} kcal'),
+                        '${exercise['minutes']} min | Spala ~${exercise['calories']} kcal'),
                     trailing: ElevatedButton(
                       onPressed: () {
                         Navigator.push(
@@ -95,7 +94,7 @@ class _ExerciseResultScreenState extends State<ExerciseResultScreen> {
                           ),
                         );
                       },
-                      child: const Text('Start Timer'),
+                      child: const Text('Włącz licznik'),
                     ),
                   ),
                 );
