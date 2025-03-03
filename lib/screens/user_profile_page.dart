@@ -77,7 +77,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('User Profile Page'),
+        title: const Text('Profil Użytkownika'),
       ),
       body: SingleChildScrollView(
         child: Column(

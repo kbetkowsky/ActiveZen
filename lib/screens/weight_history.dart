@@ -33,7 +33,6 @@ class WeightHistoryScreen extends StatelessWidget {
             itemBuilder: (context, index) {
               var data = docs[index].data() as Map<String, dynamic>;
 
-              // Convert Firestore timestamp to DateTime
               DateTime date = DateTime.now();
               if (data['timestamp'] is Timestamp) {
                 date = (data['timestamp'] as Timestamp).toDate();

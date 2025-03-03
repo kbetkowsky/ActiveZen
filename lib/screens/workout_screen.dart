@@ -12,8 +12,8 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
   final TextEditingController _bodyPartController = TextEditingController();
   List<dynamic> _workouts = [];
   bool _loading = false;
-  List<dynamic> _favorites = []; // To store favorite workouts
-  String? _selectedBodyPart; // To store the selected body part
+  List<dynamic> _favorites = [];
+  String? _selectedBodyPart;
 
   final List<String> allowedBodyParts = [
     "back",
@@ -105,7 +105,6 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
             _loading
                 ? CircularProgressIndicator()
                 : Expanded(
-                    // Pull-to-refresh functionality
                     child: RefreshIndicator(
                       onRefresh: fetchWorkouts,
                       child: ListView.builder(

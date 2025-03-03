@@ -2,8 +2,7 @@ import 'package:fitappv2/screens/register_sucessful.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:lottie/lottie.dart';
-import 'package:firebase_auth/firebase_auth.dart'; // Dodano import FirebaseAuth
-// Dla inicjalizacji Firebase
+import 'package:firebase_auth/firebase_auth.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});

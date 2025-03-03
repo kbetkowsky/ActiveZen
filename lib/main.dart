@@ -51,7 +51,6 @@ class _MyAppState extends State<MyApp> {
               effects: const [AlignEffect(curve: Curves.bounceIn)],
               child: const Text("Active Zen - Twoja codzienna dawka energii"),
             ),
-
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
@@ -73,15 +72,6 @@ class _MyAppState extends State<MyApp> {
               },
               child: const Text('Zarejestruj się'),
             ),
-            // ElevatedButton(
-            //   onPressed: () {
-            //     Navigator.push(
-            //       context,
-            //       MaterialPageRoute(builder: (context) => MainScreen()),
-            //     );
-            //   },
-            //   child: Text('Przejdź do aplikacji'),
-            // ),
           ],
         ),
       ),

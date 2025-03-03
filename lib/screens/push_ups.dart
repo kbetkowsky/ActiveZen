@@ -14,7 +14,7 @@ class PushUpsScreen extends StatefulWidget {
 
 class _PushUpsScreenState extends State<PushUpsScreen> {
   late Timer _timer;
-  int _start = 5;
+  int _start = 120;
 
   void startTimer() {
     const oneSec = Duration(seconds: 1);
@@ -73,7 +73,7 @@ class _PushUpsScreenState extends State<PushUpsScreen> {
                   child: SizedBox(
                     height: 200,
                     child: CustomPaint(
-                      painter: TimerPainter(progress: _start / 5),
+                      painter: TimerPainter(progress: _start / 120),
                       child: Center(
                         child: Text(
                           '$_start',
